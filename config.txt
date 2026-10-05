@@ -1,0 +1,2 @@
+notes_filename=my_notes.txt
+max_notes=10
