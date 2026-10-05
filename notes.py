@@ -1,25 +1,27 @@
-# Simple Notes Program - Version 2
+# Simple Notes Program - Version 4
+
+# Read config
+with open("config.txt", "r") as file:
+    config = file.read()
+    # Extract filename (simple parsing)
+    notes_file = config.split("\n")[0].split("=")[1]
 
 print("=== MY NOTES ===")
-print("1. Write note")
-print("2. Read notes")
+print("1. Add note")
+print("2. Read all notes")
 
 choice = input("Choose (1 or 2): ")
 
 if choice == "1":
-    # Write a note to file
     note = input("Write your note: ")
-
-    with open("my_notes.txt", "w") as file:
-        file.write(note)
-
-    print("Note saved!")
+    with open(notes_file, "a") as file:
+        file.write(note + "\n")
+    print("Note added!")
 
 elif choice == "2":
-    # Read notes from file
     try:
-        with open("my_notes.txt", "r") as file:
-            content = file.read()
-        print(f"\nYour note: {content}")
+        with open(notes_file, "r") as file:
+            notes = file.read()
+        print(f"\nAll notes:\n{notes}")
     except FileNotFoundError:
         print("No notes found yet!")
